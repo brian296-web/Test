@@ -2,154 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll-Based Moving Squares</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D Scroll Animation</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #1e293b;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    .intro,
-    .outro {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .intro {
-      background: #f8fafc;
-    }
-
-    .outro {
-      background: #1e293b;
-      color: white;
-    }
-
-    .intro h1,
-    .outro h2 {
-      font-size: clamp(2rem, 5vw, 4rem);
-      margin-bottom: 12px;
-    }
-
-    .intro p,
-    .outro p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    #selector-demo {
-      min-height: 100vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 24px;
-      padding: 40px 20px;
-      overflow: hidden;
-      background: #e2e8f0;
-    }
-
-    .medium.row {
-      width: 100%;
-      max-width: 900px;
-      height: 90px;
-      margin: 0 auto;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      border-radius: 8px;
-    }
-
-    .square {
-      width: 48px;
-      height: 48px;
-      flex-shrink: 0;
-      background: #64748b;
-
-      animation: move linear both;
-      animation-timeline: scroll(root block);
-      animation-range: 0% 100%;
-    }
-
-    .medium.row:nth-child(2) .square {
-      background: #84cc16;
-    }
-
-    .medium.row:nth-child(3) .square {
-      background: #2d3e2c;
-    }
-
-    @keyframes move {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(
-          min(75vw, 650px)
-        );
-      }
-    }
-
-    .scroll-hint {
-      margin-top: 24px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #475569;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .square {
-        animation: none;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <section class="intro">
-    <h1>Scroll to Animate</h1>
-    <p>Scroll down to move the squares.</p>
-    <p>↓</p>
-  </section>
-
-  <section id="selector-demo">
-    <div class="medium row">
-      <div class="square"></div>
-    </div>
-
-    <div class="medium row">
-      <div class="square"></div>
-    </div>
-
-    <div class="medium row">
-      <div class="square"></div>
-    </div>
-
-    <p class="scroll-hint">
-      Keep scrolling to move the squares across the tracks.
-    </p>
-  </section>
-
-  <section class="outro">
-    <h2>Animation Complete</h2>
-    <p>Scroll back up to reverse the movement.</p>
-  </section>
-
-</body>
-</html>
+body {
+  margin: 0;
+  font
