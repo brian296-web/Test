@@ -5,16 +5,129 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>3D Scroll Animation</title>
-
 <style>
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font
+  font-family: Arial, sans-serif;
+  color: #16233d;
+  background: #e8eef7;
+}
+
+.hero, .ending {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.hero {
+  background: radial-gradient(circle, #fff, #dce6f5);
+}
+
+h1 { font-size: clamp(2.5rem, 7vw, 5rem); }
+p { line-height: 1.7; }
+
+.scene {
+  min-height: 160vh;
+  padding: 15vh 7vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 70px;
+  perspective: 900px;
+  background: linear-gradient(140deg, #dce7f7, #aebfd6);
+}
+
+.track {
+  height: 100px;
+  width: min(100%, 900px);
+  margin: auto;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #fff, #c8d5e8);
+  box-shadow: 8px 12px 22px #7589a655,
+              inset 2px 2px 5px #ffffff;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.cube {
+  --travel: 65vw;
+  width: 55px;
+  height: 55px;
+  flex: 0 0 55px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #607594, #14233e);
+  box-shadow: 8px 10px 12px #25365055,
+              inset 2px 2px 3px #ffffff66;
+  transform: translateX(0) rotateX(-12deg) rotateY(-20deg);
+  animation: travel linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0% 100%;
+}
+
+.track:nth-child(2) .cube {
+  background: linear-gradient(135deg, #b7ff55, #559b18);
+}
+
+.track:nth-child(3) .cube {
+  background: linear-gradient(135deg, #46674a, #162d1b);
+}
+
+@keyframes travel {
+  from {
+    transform: translateX(0) rotateX(-12deg) rotateY(-20deg);
+  }
+  to {
+    transform: translateX(var(--travel)) rotateX(350deg) rotateY(340deg);
+  }
+}
+
+.hint {
+  text-align: center;
+  color: #43516b;
+}
+
+.ending {
+  background: radial-gradient(circle at top, #293c5b, #101a2e);
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .scene { padding-inline: 20px; gap: 45px; }
+  .track { height: 80px; }
+  .cube { width: 42px; height: 42px; flex-basis: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cube { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>Scroll to Animate</h1>
+  <p>Scroll down to bring the 3D cubes to life.</p>
+  <p>↓</p>
+</section>
+
+<section class="scene">
+  <div class="track"><div class="cube"></div></div>
+  <div class="track"><div class="cube"></div></div>
+  <div class="track"><div class="cube"></div></div>
+  <p class="hint">Keep scrolling to move and rotate the cubes.</p>
+</section>
+
+<section class="ending">
+  <h1>Animation Complete</h1>
+  <p>Scroll back up to reverse the movement.</p>
+</section>
+
+</body>
+</html>
