@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moving Squares</title>
+  <style>
+    #selector-demo {
+      width: 100%;
+      max-width: 500px;
+      margin: 40px auto;
+    }
+
+    .medium.row {
+      height: 80px;
+      background: #f1f5f9;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .square {
+      width: 45px;
+      height: 45px;
+      background: #64748b;
+      animation: move 2s ease-in-out infinite alternate;
+    }
+
+    .medium.row:nth-child(2) .square {
+      background: #84cc16;
+      animation-delay: 0.3s;
+    }
+
+    .medium.row:nth-child(3) .square {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes move {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(400px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="selector-demo">
+    <div class="medium row">
+      <div class="square"></div>
+    </div>
+    <div class="medium row">
+      <div class="square"></div>
+    </div>
+    <div class="medium row">
+      <div class="square"></div>
+    </div>
+  </div>
+</body>
+</html>
