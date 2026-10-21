@@ -56,7 +56,7 @@ p { line-height: 1.7; }
 .art-orbit::before,.art-orbit::after { content: ""; position: absolute; border: 1px solid rgba(45,62,44,.13); border-radius: 50%; inset: 13%; }
 .art-orbit::after { inset: 27%; }
 .art-glow { position: absolute; width: 250px; height: 250px; border-radius: 50%; background: var(--lime); filter: blur(55px); opacity: .65; }
-.hero-hex { width: min(68%, 275px); aspect-ratio: 1; position: relative; z-index: 2; color: var(--forest); filter: drop-shadow(18px 28px 18px rgba(28,42,27,.2)); transform-style: preserve-3d; }
+.hero-hex { width: min(58%, 230px); aspect-ratio: 1; position: relative; z-index: 2; color: var(--forest); filter: drop-shadow(18px 28px 18px rgba(28,42,27,.2)); transform-style: preserve-3d; }
 .hero-hex svg { width: 100%; height: 100%; overflow: visible; }
 .hero-hex polygon { transform-origin: center; }
 .float-tag { position: absolute; z-index: 3; padding: 11px 14px; border: 1px solid rgba(45,62,44,.13); border-radius: 13px; background: rgba(255,255,255,.76); backdrop-filter: blur(12px); box-shadow: 0 12px 30px rgba(32,43,30,.08); font-size: 11px; font-weight: 600; }
@@ -80,7 +80,7 @@ p { line-height: 1.7; }
 .stat strong { display: block; font: 600 22px "Manrope", sans-serif; color: var(--lime); letter-spacing: -.05em; }
 .stat span { color: #c1cbbb; font-size: 10px; }
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.service-card { min-height: 230px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); display: flex; flex-direction: column; background: rgba(255,255,255,.42); transition: background .3s, box-shadow .3s; transform-style: preserve-3d; }
+.service-card { min-height: 230px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); display: flex; flex-direction: column; background: rgba(255,255,255,.42); transition: background .3s, box-shadow .3s; }
 .service-card:hover { background: #fff; box-shadow: 0 20px 50px rgba(45,62,44,.08); }
 .card-number { color: #73856b; font: 11px "DM Mono", monospace; }
 .service-card h3 { font-size: 21px; margin: 28px 0 9px; font-weight: 600; }
@@ -88,13 +88,13 @@ p { line-height: 1.7; }
 .service-icon { margin-top: auto; padding-top: 22px; color: var(--forest); font-size: 23px; }
 .work { background: #e9ecdf; }
 .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-.work-card { border-radius: 20px; overflow: hidden; background: var(--paper); border: 1px solid rgba(45,62,44,.12); transform-style: preserve-3d; }
+.work-card { border-radius: 20px; overflow: hidden; background: var(--paper); border: 1px solid rgba(45,62,44,.12); }
 .work-visual { min-height: 270px; position: relative; overflow: hidden; display: grid; place-items: center; padding: 28px; background: #dce7c9; }
 .work-visual.graphics { background: #d9e5c6; }
 .work-visual.video { background: #263b2a; }
 .work-visual.websites { background: #d6dcd0; }
 .work-visual.content { background: #e8d9c4; }
-.mock-window { width: 82%; max-width: 390px; border-radius: 10px; background: #f9faf5; padding: 12px; box-shadow: 0 22px 44px rgba(27,40,25,.2); transform: rotate(-5deg) translateZ(20px); }
+.mock-window { width: 82%; max-width: 390px; border-radius: 10px; background: #f9faf5; padding: 12px; box-shadow: 0 22px 44px rgba(27,40,25,.2); transform: rotate(-5deg); }
 .mock-dots { display: flex; gap: 4px; margin-bottom: 10px; }
 .mock-dots i { width: 5px; height: 5px; border-radius: 50%; background: #b7c1af; }
 .mock-cover { min-height: 120px; background: linear-gradient(135deg, #e4fd97, #6d8d58); display: flex; align-items: end; padding: 15px; color: #243522; font: 800 22px "Manrope",sans-serif; letter-spacing: -.06em; }
@@ -102,7 +102,7 @@ p { line-height: 1.7; }
 .mock-lines { display: grid; gap: 6px; padding-top: 10px; }
 .mock-lines i { height: 5px; background: #e2e7dc; border-radius: 10px; }
 .mock-lines i:last-child { width: 58%; }
-.poster { width: 170px; height: 220px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; background: #f5f6ef; color: #2d3e2c; box-shadow: 0 22px 45px rgba(27,40,25,.22); transform: rotate(7deg) translateZ(25px); }
+.poster { width: 170px; height: 220px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; background: #f5f6ef; color: #2d3e2c; box-shadow: 0 22px 45px rgba(27,40,25,.22); transform: rotate(7deg); }
 .poster span { font: 10px "DM Mono",monospace; text-transform: uppercase; }
 .poster strong { font: 800 32px/.9 "Manrope",sans-serif; letter-spacing: -.08em; }
 .poster .poster-circle { width: 54px; height: 54px; border-radius: 50%; background: var(--lime); align-self: end; }
@@ -150,6 +150,10 @@ p { line-height: 1.7; }
   .hero h1 { font-size: clamp(3.4rem, 15vw, 6rem); }
   .hero-art { min-height: 330px; margin-top: 10px; }
   .art-orbit { width: 300px; }
+  .hero-hex { width: min(52%, 190px); }
+  .tag-one { top: 6%; }
+  .tag-two { bottom: 6%; }
+  .tag-three { bottom: 3%; }
   .section { padding: 76px 0; }
   .section-head { display: block; margin-bottom: 28px; }
   .section-head p { margin-top: 16px; }
@@ -204,24 +208,30 @@ p { line-height: 1.7; }
         <div class="availability"><span class="status-dot"></span> Reliable support. Thoughtful execution.</div>
       </div>
       <div class="hero-art" aria-label="Animated 3D geometric artwork">
-        <div class="art-orbit" data-3d data-x="18" data-mode="hero" data-base-rot="-18" data-ease="0.7,0.1,0.5,0.9"></div>
+        <div class="art-orbit" data-3d data-x="55" data-mode="hero" data-base-rot="-18"></div>
         <div class="art-glow"></div>
-        <div class="hero-hex" data-3d data-x="170" data-mode="hero" data-ease="0.1,0.7,0.5,1">
+        <div class="hero-hex" data-3d data-x="30" data-mode="hero">
           <svg viewBox="0 0 128 128" role="img" aria-label="Geometric hexagon">
             <defs>
               <linearGradient id="hexGradient" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="#E4FD97"/>
                 <stop offset="100%" stop-color="#8eae67"/>
               </linearGradient>
+              <filter id="displacementFilter" x="-10%" y="-10%" width="120%" height="120%">
+                <feTurbulence id="hexTurb" type="turbulence" numOctaves="2" baseFrequency="0" result="turbulence"/>
+                <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
             </defs>
+            <g id="hexShape">
             <polygon points="64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96" fill="url(#hexGradient)" stroke="#2D3E2C" stroke-width="1.5"/>
             <polygon points="64 105 28 84 28 44 64 23 100 44 100 84" fill="none" stroke="#2D3E2C" stroke-opacity=".45" stroke-width="1.2"/>
             <path d="M64 23 V105 M28 44 L100 84 M100 44 L28 84" stroke="#2D3E2C" stroke-opacity=".25" stroke-width="1"/>
+            </g>
           </svg>
         </div>
-        <div class="float-tag tag-one" data-3d data-x="80" data-mode="hero" data-ease="0.5,0,0.9,0.3">Creative support<small>Content · Design · Editing</small></div>
-        <div class="float-tag tag-two" data-3d data-x="270" data-mode="hero" data-ease="0.1,0.7,0.5,1">Operations<small>Structure that scales</small></div>
-        <div class="float-tag tag-three" data-3d data-x="40" data-mode="hero" data-ease="0.7,0.1,0.5,0.9">Detail-driven <span aria-hidden="true">✳</span></div>
+        <div class="float-tag tag-one" data-3d data-x="14" data-mode="hero">Creative support<small>Content · Design · Editing</small></div>
+        <div class="float-tag tag-two" data-3d data-x="14" data-mode="hero">Operations<small>Structure that scales</small></div>
+        <div class="float-tag tag-three" data-3d data-x="14" data-mode="hero">Detail-driven <span aria-hidden="true">✳</span></div>
       </div>
     </div>
     <div class="scroll-note">Scroll to explore</div>
@@ -269,25 +279,25 @@ p { line-height: 1.7; }
         <p>A quick look at the kinds of projects I support across content, design, and digital experiences.</p>
       </div>
       <div class="work-grid">
-        <article class="work-card reveal" data-3d data-x="14" data-ease="0.5,0,0.9,0.3">
+        <article class="work-card reveal" data-3d data-x="14">
           <div class="work-visual graphics">
             <div class="poster"><span>Social creative / 01</span><strong>MOVE<br>WITH<br>INTENT.</strong><div class="poster-circle"></div></div>
           </div>
           <div class="work-info"><div><h3>Social Media Graphics</h3><p>Visual concepts · Brand consistency · Campaign assets</p></div><span class="work-type">Design</span></div>
         </article>
-        <article class="work-card reveal" data-3d data-x="14" data-ease="0.1,0.7,0.5,1">
+        <article class="work-card reveal" data-3d data-x="14">
           <div class="work-visual video">
             <div class="video-frame"><div class="play" aria-hidden="true">▶</div></div>
           </div>
           <div class="work-info"><div><h3>Short-Form Video Editing</h3><p>Reels · Captions · Pacing · Platform-ready edits</p></div><span class="work-type">Video</span></div>
         </article>
-        <article class="work-card reveal" data-3d data-x="14" data-ease="0.7,0.1,0.5,0.9">
+        <article class="work-card reveal" data-3d data-x="14">
           <div class="work-visual websites">
             <div class="mock-window"><div class="mock-dots"><i></i><i></i><i></i></div><div class="mock-cover">Build a better<br>experience.</div><div class="mock-lines"><i></i><i></i><i></i></div></div>
           </div>
           <div class="work-info"><div><h3>Websites & Funnels</h3><p>Landing page layouts · Web visuals · User journeys</p></div><span class="work-type">Web</span></div>
         </article>
-        <article class="work-card reveal" data-3d data-x="14" data-ease="0.5,0,0.9,0.3">
+        <article class="work-card reveal" data-3d data-x="14">
           <div class="work-visual content">
             <div class="mock-window"><div class="mock-dots"><i></i><i></i><i></i></div><div class="mock-cover dark">Ideas into<br>action.</div><div class="mock-lines"><i></i><i></i><i></i></div></div>
           </div>
@@ -332,7 +342,7 @@ p { line-height: 1.7; }
   const reveals = document.querySelectorAll('.reveal');
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* ---------- Reveal on enter ---------- */
+  /* ---------- Fade/slide text blocks in as they enter ---------- */
   if ('IntersectionObserver' in window && !reduceMotion) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -357,14 +367,14 @@ p { line-height: 1.7; }
       if (x <= 0) return 0;
       if (x >= 1) return 1;
       let t = x;
-      for (let i = 0; i < 6; i++) {            // Newton–Raphson
+      for (let i = 0; i < 6; i++) {
         const err = sx(t) - x;
         if (Math.abs(err) < 1e-5) return sy(t);
         const d = dx(t);
         if (Math.abs(d) < 1e-6) break;
         t -= err / d;
       }
-      let lo = 0, hi = 1; t = x;               // bisection fallback
+      let lo = 0, hi = 1; t = x;
       while (lo < hi) {
         const v = sx(t);
         if (Math.abs(v - x) < 1e-5) break;
@@ -376,24 +386,35 @@ p { line-height: 1.7; }
     };
   }
 
-  // The same three curves as the reference, cycled when an element has no data-ease.
-  const DEFAULT_EASES = ['0.5,0,0.9,0.3', '0.1,0.7,0.5,1', '0.7,0.1,0.5,0.9'];
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const EASE_OUT = '0.1,0.7,0.5,1';       // calm deceleration for cards and tags
+  const EASE_IN_OUT = '0.7,0.1,0.5,0.9';  // smooth start and finish for the hexagon and orbit
 
-  /* ---------- Scroll-linked 3D engine ---------- */
-  const items = [...document.querySelectorAll('[data-3d]')].map((el, i) => {
-    const spec = (el.dataset.ease || DEFAULT_EASES[i % DEFAULT_EASES.length]).split(',').map(Number);
+  const hexShape = document.getElementById('hexShape');
+  const hexTurb = document.getElementById('hexTurb');
+
+  /* ---------- Items ----------
+     data-x is the intensity in natural units:
+       hex   -> degrees of Y rotation
+       orbit -> degrees of X tilt
+       tag   -> pixels of vertical drift (away from the hexagon)
+       card  -> degrees of entry tilt (scaled down below)            */
+  const items = [...document.querySelectorAll('[data-3d]')].map((el) => {
+    const role = el.classList.contains('hero-hex') ? 'hex'
+      : el.classList.contains('art-orbit') ? 'orbit'
+      : el.classList.contains('float-tag') ? 'tag' : 'card';
+    const spec = (el.dataset.ease || (role === 'hex' || role === 'orbit' ? EASE_IN_OUT : EASE_OUT)).split(',').map(Number);
     return {
-      el,
-      x: Number(el.dataset.x || 12),                 // intensity: degrees / pixels of travel
-      hero: el.dataset.mode === 'hero',
-      base: Number(el.dataset.baseRot || 0),         // keeps the orbit's initial -18° tilt
+      el, role,
+      x: Number(el.dataset.x || 10),
+      base: Number(el.dataset.baseRot || 0),
+      dir: el.classList.contains('tag-one') ? -1 : 1,   // top tag drifts up, bottom tags drift down
       ease: cubicBezier(spec[0], spec[1], spec[2], spec[3]),
-      top: 0, h: 0, cur: 0, tx: 0, ty: 0
+      top: 0, h: 0, left: 0, col: 0, cur: 0, tx: 0, ty: 0
     };
   });
 
-  // Measure layout positions without our own transform skewing the numbers.
+  // Measure natural (untransformed) positions and work out each card's grid column for the stagger.
   function measure() {
     items.forEach((it) => {
       const prev = it.el.style.transform;
@@ -401,41 +422,51 @@ p { line-height: 1.7; }
       const r = it.el.getBoundingClientRect();
       it.top = r.top + window.scrollY;
       it.h = r.height;
+      it.left = r.left;
       it.el.style.transform = prev;
+    });
+    const groups = new Map();
+    items.filter((it) => it.role === 'card').forEach((it) => {
+      const key = it.el.parentElement;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(it);
+    });
+    groups.forEach((list) => {
+      const lefts = [...new Set(list.map((it) => Math.round(it.left)))].sort((a, b) => a - b);
+      list.forEach((it) => { it.col = lefts.indexOf(Math.round(it.left)); });
     });
   }
 
-  function target(it, vh, sy) {
-    if (it.hero) {
-      // 0 at the top of the page → 1 once the hero has scrolled away
-      return clamp(sy / (vh * 0.9), 0, 1);
-    }
-    // 0 as the element enters the bottom of the viewport → 1 as it leaves the top
-    return clamp((sy + vh - it.top) / (vh + it.h), 0, 1);
+  function progress(it, vh, sy) {
+    if (it.role !== 'card') return clamp(sy / (vh * 0.9), 0, 1);       // hero: 0 at page top → 1 once scrolled away
+    const top = it.top + it.col * 70;                                    // later columns start a beat later
+    return clamp((sy + vh - top) / (vh * 0.5), 0, 1);                    // 0 entering the bottom → 1 (flat) by mid-screen
   }
 
   function apply(it, e) {
-    const x = it.x;
     let t;
-    if (it.hero) {
-      if (it.el.classList.contains('hero-hex')) {
-        // Spin the hexagon on its Y axis by data-x degrees
-        t = `rotateY(${e * x}deg) rotateX(${e * x * 0.18}deg) translate3d(0, ${-e * 60}px, ${e * 80}px)`;
-      } else if (it.el.classList.contains('art-orbit')) {
-        t = `rotate(${it.base + e * x * 6}deg) rotateX(${e * x * 2.5}deg) scale(${1 + e * 0.12})`;
-      } else {
-        // Floating tags drift upward / toward the viewer by data-x
-        t = `translate3d(0, ${-e * x * 0.6}px, ${e * x * 0.35}px) rotateY(${e * x * 0.25}deg)`;
-      }
+    if (it.role === 'hex') {
+      t = `rotateY(${e * it.x}deg)`;                                     // turns in place, only ever narrows
+    } else if (it.role === 'orbit') {
+      t = `rotate(${it.base}deg) rotateX(${e * it.x}deg)`;               // circle eases into an ellipse, never grows
+    } else if (it.role === 'tag') {
+      t = `translate3d(0, ${it.dir * e * it.x}px, 0)`;                   // drifts away from the hexagon
     } else {
-      const s = e * 2 - 1;                           // -1 (entering) → 0 (centered) → 1 (leaving)
-      const lift = -s * Math.min(34, x * 2.2);
-      const depth = (1 - Math.abs(s)) * Math.min(60, x * 3.5);
-      const rx = clamp(s * x * 1.1, -24, 24) + it.ty;
-      const ry = clamp(-s * x * 0.7, -16, 16) + it.tx;
-      t = `perspective(1000px) translate3d(0, ${lift}px, ${depth}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      const q = 1 - e;                                                   // 1 = just entering, 0 = settled flat
+      t = `perspective(1400px) translate3d(0, ${q * 36}px, 0) rotateX(${q * it.x * 0.45 + it.ty}deg) rotateY(${it.tx}deg)`;
     }
     it.el.style.transform = t;
+
+    if (it.role === 'hex' && hexShape && hexTurb) {
+      // Soft edge ripple that peaks mid-scroll and leaves the shape perfectly clean at both ends.
+      const wob = Math.sin(Math.PI * e);
+      if (wob > 0.03) {
+        hexTurb.setAttribute('baseFrequency', (0.02 * wob).toFixed(4));
+        hexShape.setAttribute('filter', 'url(#displacementFilter)');
+      } else {
+        hexShape.removeAttribute('filter');
+      }
+    }
   }
 
   const bar = document.getElementById('scrollProgress');
@@ -446,8 +477,8 @@ p { line-height: 1.7; }
     const sy = window.scrollY;
     let settling = false;
     items.forEach((it) => {
-      const goal = target(it, vh, sy);
-      it.cur += (goal - it.cur) * 0.14;              // smooth follow
+      const goal = progress(it, vh, sy);
+      it.cur += (goal - it.cur) * 0.16;                                  // smooth follow
       if (Math.abs(goal - it.cur) > 0.0005) settling = true; else it.cur = goal;
       apply(it, it.ease(it.cur));
     });
@@ -462,19 +493,19 @@ p { line-height: 1.7; }
   window.addEventListener('load', () => { measure(); kick(); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); kick(); });
   measure();
-  items.forEach((it) => { it.cur = target(it, window.innerHeight, window.scrollY); });
+  items.forEach((it) => { it.cur = progress(it, window.innerHeight, window.scrollY); });
   kick();
 
-  /* ---------- Pointer tilt, layered on top of the scroll transform ---------- */
+  /* ---------- Gentle pointer tilt, layered on the scroll transform ---------- */
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    items.filter((it) => it.el.matches('.service-card, .work-card')).forEach((it) => {
+    items.filter((it) => it.role === 'card').forEach((it) => {
       it.el.addEventListener('pointermove', (ev) => {
         const r = it.el.getBoundingClientRect();
-        it.tx = ((ev.clientX - r.left) / r.width - 0.5) * 8;
-        it.ty = -((ev.clientY - r.top) / r.height - 0.5) * 6;
-        kick(); running = true; apply(it, it.ease(it.cur));
+        it.tx = ((ev.clientX - r.left) / r.width - 0.5) * 5;
+        it.ty = -((ev.clientY - r.top) / r.height - 0.5) * 4;
+        kick();
       });
-      it.el.addEventListener('pointerleave', () => { it.tx = 0; it.ty = 0; apply(it, it.ease(it.cur)); });
+      it.el.addEventListener('pointerleave', () => { it.tx = 0; it.ty = 0; kick(); });
     });
   }
 })();
