@@ -1,263 +1,105 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Scroll Animation</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  body {
+    margin: 0;
+    background: #10110f;
+    overflow-x: hidden;
+  }
 
-    body {
-      background: #10110f;
-      color: #f5f5f0;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
+  .medium.row {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+  }
 
-    .intro {
-      min-height: 100vh;
-      display: grid;
-      place-content: center;
-      text-align: center;
-      gap: 16px;
-      padding: 24px;
-    }
+  .square {
+    width: 220px;
+    height: 220px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #e4fd97, #2d3e2c);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
 
-    .intro h1 {
-      font-size: clamp(2.5rem, 8vw, 6rem);
-      letter-spacing: -0.07em;
-    }
+  #css-selector-id {
+    background: linear-gradient(135deg, #f0ffd0, #8ab45e, #17291e);
+  }
 
-    .intro p {
-      color: #a5ab9d;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
+  .medium.row:nth-of-type(3) .square {
+    background: linear-gradient(135deg, #e4fd97, #718f56, #17291e);
+  }
+</style>
 
-    .medium.row {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1100px;
-      perspective-origin: center;
-      padding: 40px 20px;
-    }
+<div class="medium row">
+  <div class="square"></div>
+</div>
 
-    .square {
-      width: min(55vw, 360px);
-      aspect-ratio: 1;
-      border-radius: 28px;
-      position: relative;
-      transform-style: preserve-3d;
-      will-change: transform;
-      background:
-        radial-gradient(circle at 25% 20%,
-          rgba(255,255,255,0.85), transparent 22%),
-        linear-gradient(135deg, #d8ff8b, #83a85d 55%, #263e2d);
-      box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.4),
-        inset 0 2px 2px rgba(255, 255, 255, 0.45);
-    }
+<div class="medium row">
+  <div id="css-selector-id" class="square"></div>
+</div>
 
-    .square::before {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 20px;
-      transform: translateZ(20px);
-    }
+<div class="medium row">
+  <div class="square"></div>
+</div>
 
-    .square::after {
-      content: "";
-      position: absolute;
-      width: 65%;
-      height: 65%;
-      top: 17.5%;
-      left: 17.5%;
-      border-radius: 50%;
-      background: rgba(20, 38, 25, 0.22);
-      filter: blur(20px);
-      transform: translateZ(-25px);
-    }
+<script>
+  const rows = document.querySelectorAll(".medium.row");
+  const squares = document.querySelectorAll(".square");
 
-    /* First square */
-    .row:nth-of-type(2) .square {
-      background: linear-gradient(145deg, #e4fd97, #9fca72, #2d3e2c);
-    }
+  function updateAnimation() {
+    const viewportHeight = window.innerHeight;
 
-    /* Middle square */
-    #css-selector-id {
-      background:
-        linear-gradient(135deg,
-          #d7ff8b 0%,
-          #719e62 48%,
-          #17291e 100%);
-      border-radius: 50px;
-    }
+    squares.forEach((square, index) => {
+      const rect = rows[index].getBoundingClientRect();
 
-    /* Third square */
-    .row:nth-of-type(4) .square {
-      background: linear-gradient(145deg, #f1f5e9, #9dbd80, #314b36);
-      border-radius: 50%;
-    }
+      // Progress changes as the section crosses the viewport
+      const progress =
+        (viewportHeight - rect.top) /
+        (viewportHeight + rect.height);
 
-    .outro {
-      min-height: 70vh;
-      display: grid;
-      place-content: center;
-      text-align: center;
-      padding: 30px;
-    }
+      const p = Math.max(0, Math.min(1, progress));
+      const angle = (p - 0.5) * 2;
 
-    .outro h2 {
-      font-size: clamp(2rem, 6vw, 5rem);
-      letter-spacing: -0.06em;
-    }
+      // Large, visible 3D movement
+      const rotateX = angle * 55;
+      const rotateY = Math.sin(p * Math.PI * 2) * 55;
+      const rotateZ = angle * 25;
+      const moveZ = Math.sin(p * Math.PI) * 180;
+      const moveY = angle * -100;
+      const scale = 0.65 + Math.sin(p * Math.PI) * 0.5;
 
-    .outro p {
-      margin-top: 18px;
-      color: #a5ab9d;
-    }
-
-    @media (max-width: 600px) {
-      .square {
-        width: 70vw;
-        border-radius: 22px;
-      }
-
-      .medium.row {
-        min-height: 85vh;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .square {
-        will-change: auto;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <section class="intro">
-    <p>Interactive experience</p>
-    <h1>Beyond<br>the Surface.</h1>
-    <p>Scroll to explore ↓</p>
-  </section>
-
-  <div class="medium row">
-    <div class="square" data-animation="one"></div>
-  </div>
-
-  <div class="medium row">
-    <div id="css-selector-id"
-         class="square"
-         data-animation="two"></div>
-  </div>
-
-  <div class="medium row">
-    <div class="square" data-animation="three"></div>
-  </div>
-
-  <section class="outro">
-    <h2>Keep exploring.</h2>
-    <p>Depth is a different perspective.</p>
-  </section>
-
-  <script>
-    const squares = document.querySelectorAll(".square");
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    let ticking = false;
-
-    function animateOnScroll() {
-      if (reduceMotion) return;
-
-      const viewportHeight = window.innerHeight;
-
-      squares.forEach((square) => {
-        const rect = square.getBoundingClientRect();
-
-        // Progress: 0 at the bottom, 1 at the top
-        const progress = Math.max(
-          0,
-          Math.min(
-            1,
-            (viewportHeight - rect.top) /
-            (viewportHeight + rect.height)
-          )
-        );
-
-        // Center the progress around the viewport
-        const centered = (progress - 0.5) * 2;
-        const type = square.dataset.animation;
-
-        let rotateX, rotateY, rotateZ, scale, translateZ;
-
-        if (type === "one") {
-          rotateX = centered * 30;
-          rotateY = centered * -38;
-          rotateZ = centered * 8;
-          scale = 0.78 + progress * 0.28;
-          translateZ = progress * 70;
-        } else if (type === "two") {
-          rotateX = centered * -42;
-          rotateY = centered * 55;
-          rotateZ = centered * -12;
-          scale = 0.72 + Math.sin(progress * Math.PI) * 0.35;
-          translateZ = Math.sin(progress * Math.PI) * 120;
-        } else {
-          rotateX = centered * 35;
-          rotateY = centered * 45;
-          rotateZ = centered * 25;
-          scale = 0.8 + progress * 0.25;
-          translateZ = progress * 90;
-        }
-
-        square.style.transform = `
-          translate3d(0, ${centered * -35}px, ${translateZ}px)
-          rotateX(${rotateX}deg)
-          rotateY(${rotateY}deg)
-          rotateZ(${rotateZ}deg)
-          scale(${scale})
-        `;
-
-        square.style.opacity = Math.min(
-          1,
-          0.35 + Math.sin(progress * Math.PI) * 0.9
-        );
-      });
-
-      ticking = false;
-    }
-
-    function requestAnimation() {
-      if (!ticking) {
-        requestAnimationFrame(animateOnScroll);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener("scroll", requestAnimation, {
-      passive: true
+      square.style.transform = `
+        translate3d(0, ${moveY}px, ${moveZ}px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+        rotateZ(${rotateZ}deg)
+        scale(${scale})
+      `;
     });
+  }
 
-    window.addEventListener("resize", requestAnimation);
+  let framePending = false;
 
-    animateOnScroll();
-  </script>
+  function onScroll() {
+    if (!framePending) {
+      framePending = true;
 
-</body>
-</html>
+      requestAnimationFrame(() => {
+        updateAnimation();
+        framePending = false;
+      });
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+
+  updateAnimation();
+</script>
