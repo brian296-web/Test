@@ -1,105 +1,396 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2D3E2C">
+<meta name="description" content="Brian Villena — Virtual Assistant & Digital Creative. Project support, social media content, video editing, graphic design, and websites.">
+<title>Brian Villena — Virtual Assistant & Digital Creative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    background: #10110f;
-    overflow-x: hidden;
-  }
-
-  .medium.row {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    perspective: 1000px;
-  }
-
-  .square {
-    width: 220px;
-    height: 220px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, #e4fd97, #2d3e2c);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-    transform-style: preserve-3d;
-    will-change: transform;
-  }
-
-  #css-selector-id {
-    background: linear-gradient(135deg, #f0ffd0, #8ab45e, #17291e);
-  }
-
-  .medium.row:nth-of-type(3) .square {
-    background: linear-gradient(135deg, #e4fd97, #718f56, #17291e);
-  }
+:root {
+  --lime: #E4FD97;
+  --forest: #2D3E2C;
+  --ink: #151a15;
+  --paper: #f5f6ef;
+  --muted: #697166;
+  --line: rgba(45,62,44,.16);
+  --radius: 20px;
+  --page: min(1160px, calc(100% - 48px));
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: var(--lime); color: var(--forest); }
+.wrap { width: var(--page); margin-inline: auto; }
+.eyebrow { display: flex; align-items: center; gap: 10px; color: var(--forest); font: 500 11px "DM Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
+.eyebrow::before { content: ""; width: 7px; height: 7px; background: var(--forest); border-radius: 50%; }
+h1,h2,h3,p { margin-top: 0; }
+h1,h2,h3 { font-family: "Manrope", sans-serif; letter-spacing: -.055em; }
+h2 { font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.03; margin: 16px 0 0; font-weight: 600; }
+p { line-height: 1.7; }
+.nav { position: sticky; top: 0; z-index: 20; background: rgba(245,246,239,.88); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+.nav-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font: 800 14px "Manrope", sans-serif; letter-spacing: -.03em; }
+.brand-mark { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 9px; background: var(--forest); color: var(--lime); font-size: 13px; }
+.nav-links { display: flex; align-items: center; gap: clamp(16px, 3vw, 32px); font-size: 12px; color: #465043; }
+.nav-links a { transition: color .2s; }
+.nav-links a:hover { color: #000; }
+.nav-cta, .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--forest); background: var(--forest); color: var(--paper); border-radius: 999px; padding: 12px 18px; font-size: 12px; font-weight: 600; transition: transform .25s, background .25s, color .25s; }
+.nav-cta:hover, .button:hover { transform: translateY(-2px); background: var(--lime); color: var(--forest); }
+.hero { min-height: min(780px, calc(100svh - 72px)); display: grid; align-items: center; padding: 86px 0 72px; position: relative; isolation: isolate; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: clamp(30px, 6vw, 88px); align-items: center; }
+.hero h1 { font-size: clamp(3.4rem, 8vw, 7.3rem); line-height: .91; margin: 22px 0 24px; max-width: 760px; font-weight: 600; }
+.hero h1 span { color: #6b8b45; }
+.hero-copy { max-width: 510px; color: #5f685b; font-size: 15px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.button.secondary { background: transparent; color: var(--forest); }
+.availability { display: flex; align-items: center; gap: 9px; margin-top: 30px; color: #586252; font: 11px "DM Mono", monospace; }
+.status-dot { width: 7px; height: 7px; background: #6f9b45; border-radius: 50%; box-shadow: 0 0 0 4px rgba(111,155,69,.12); }
+.hero-art { min-height: 400px; position: relative; display: grid; place-items: center; perspective: 1000px; }
+.art-orbit { position: absolute; width: min(100%, 410px); aspect-ratio: 1; border: 1px solid rgba(45,62,44,.18); border-radius: 50%; transform: rotate(-18deg); }
+.art-orbit::before,.art-orbit::after { content: ""; position: absolute; border: 1px solid rgba(45,62,44,.13); border-radius: 50%; inset: 13%; }
+.art-orbit::after { inset: 27%; }
+.art-glow { position: absolute; width: 250px; height: 250px; border-radius: 50%; background: var(--lime); filter: blur(55px); opacity: .65; }
+.hero-hex { width: min(68%, 275px); aspect-ratio: 1; position: relative; z-index: 2; color: var(--forest); filter: drop-shadow(18px 28px 18px rgba(28,42,27,.2)); transform-style: preserve-3d; }
+.hero-hex svg { width: 100%; height: 100%; overflow: visible; }
+.hero-hex polygon { transform-origin: center; }
+.float-tag { position: absolute; z-index: 3; padding: 11px 14px; border: 1px solid rgba(45,62,44,.13); border-radius: 13px; background: rgba(255,255,255,.76); backdrop-filter: blur(12px); box-shadow: 0 12px 30px rgba(32,43,30,.08); font-size: 11px; font-weight: 600; }
+.float-tag small { display: block; color: var(--muted); font-size: 9px; font-weight: 400; margin-top: 3px; }
+.tag-one { top: 14%; right: 0; }
+.tag-two { left: -1%; bottom: 16%; }
+.tag-three { right: 4%; bottom: 5%; }
+.scroll-note { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); color: #7c8577; font: 10px "DM Mono", monospace; text-transform: uppercase; letter-spacing: .15em; display: flex; align-items: center; gap: 10px; }
+.scroll-note::before { content: ""; width: 32px; height: 1px; background: #a6afa0; }
+.section { padding: 108px 0; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 38px; }
+.section-head p { max-width: 390px; margin: 0; color: var(--muted); font-size: 13px; }
+.about { background: var(--forest); color: var(--paper); }
+.about .eyebrow { color: var(--lime); }
+.about .eyebrow::before { background: var(--lime); }
+.about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(30px, 8vw, 120px); align-items: start; }
+.about h2 { max-width: 420px; }
+.about-copy { color: #d1d8c9; font-size: 15px; max-width: 620px; }
+.about-copy strong { color: var(--lime); font-weight: 600; }
+.stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.2); }
+.stat strong { display: block; font: 600 22px "Manrope", sans-serif; color: var(--lime); letter-spacing: -.05em; }
+.stat span { color: #c1cbbb; font-size: 10px; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.service-card { min-height: 230px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); display: flex; flex-direction: column; background: rgba(255,255,255,.42); transition: transform .3s, background .3s, box-shadow .3s; transform-style: preserve-3d; }
+.service-card:hover { background: #fff; box-shadow: 0 20px 50px rgba(45,62,44,.08); }
+.card-number { color: #73856b; font: 11px "DM Mono", monospace; }
+.service-card h3 { font-size: 21px; margin: 28px 0 9px; font-weight: 600; }
+.service-card p { color: var(--muted); font-size: 12px; margin: 0; }
+.service-icon { margin-top: auto; padding-top: 22px; color: var(--forest); font-size: 23px; }
+.work { background: #e9ecdf; }
+.work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.work-card { border-radius: 20px; overflow: hidden; background: var(--paper); border: 1px solid rgba(45,62,44,.12); transform-style: preserve-3d; }
+.work-visual { min-height: 270px; position: relative; overflow: hidden; display: grid; place-items: center; padding: 28px; background: #dce7c9; }
+.work-visual.graphics { background: #d9e5c6; }
+.work-visual.video { background: #263b2a; }
+.work-visual.websites { background: #d6dcd0; }
+.work-visual.content { background: #e8d9c4; }
+.mock-window { width: 82%; max-width: 390px; border-radius: 10px; background: #f9faf5; padding: 12px; box-shadow: 0 22px 44px rgba(27,40,25,.2); transform: rotate(-5deg) translateZ(20px); }
+.mock-dots { display: flex; gap: 4px; margin-bottom: 10px; }
+.mock-dots i { width: 5px; height: 5px; border-radius: 50%; background: #b7c1af; }
+.mock-cover { min-height: 120px; background: linear-gradient(135deg, #e4fd97, #6d8d58); display: flex; align-items: end; padding: 15px; color: #243522; font: 800 22px "Manrope",sans-serif; letter-spacing: -.06em; }
+.mock-cover.dark { background: linear-gradient(140deg,#d7ff8b,#2d3e2c); color: #f7f9ef; }
+.mock-lines { display: grid; gap: 6px; padding-top: 10px; }
+.mock-lines i { height: 5px; background: #e2e7dc; border-radius: 10px; }
+.mock-lines i:last-child { width: 58%; }
+.poster { width: 170px; height: 220px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; background: #f5f6ef; color: #2d3e2c; box-shadow: 0 22px 45px rgba(27,40,25,.22); transform: rotate(7deg) translateZ(25px); }
+.poster span { font: 10px "DM Mono",monospace; text-transform: uppercase; }
+.poster strong { font: 800 32px/.9 "Manrope",sans-serif; letter-spacing: -.08em; }
+.poster .poster-circle { width: 54px; height: 54px; border-radius: 50%; background: var(--lime); align-self: end; }
+.video-frame { width: 82%; max-width: 390px; aspect-ratio: 16/9; border: 7px solid #121812; border-radius: 12px; background: radial-gradient(circle at 70% 20%,#7e9d64,#344d36 50%,#17251a); box-shadow: 0 24px 48px rgba(0,0,0,.28); display: grid; place-items: center; transform: rotateY(-10deg) rotateX(4deg); }
+.play { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; display: grid; place-items: center; color: white; padding-left: 3px; }
+.work-info { padding: 21px 22px 22px; display: flex; justify-content: space-between; gap: 18px; align-items: start; }
+.work-info h3 { font-size: 18px; margin: 0 0 5px; }
+.work-info p { margin: 0; color: var(--muted); font-size: 11px; }
+.work-type { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 999px; padding: 7px 9px; font: 9px "DM Mono",monospace; text-transform: uppercase; }
+.work-footnote { color: var(--muted); font-size: 11px; margin: 20px 0 0; }
+.tools-grid { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 28px; }
+.tool-pill { border: 1px solid var(--line); border-radius: 999px; padding: 11px 15px; font-size: 12px; color: #4e594a; background: rgba(255,255,255,.45); }
+.contact { background: var(--lime); }
+.contact-grid { display: flex; justify-content: space-between; align-items: end; gap: 30px; }
+.contact h2 { max-width: 700px; font-size: clamp(2.7rem, 6vw, 5.6rem); }
+.contact p { color: #485741; max-width: 440px; font-size: 14px; margin: 20px 0 0; }
+.contact .button { background: var(--forest); color: white; border-color: var(--forest); flex-shrink: 0; }
+.contact .button:hover { background: transparent; color: var(--forest); }
+.footer { padding: 22px 0; background: var(--forest); color: #dce4d5; font-size: 10px; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.footer a { color: var(--lime); }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+[data-3d] { will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+@media (max-width: 780px) {
+  :root { --page: min(100% - 36px, 600px); }
+  .nav-inner { min-height: 64px; }
+  .nav-links { gap: 13px; }
+  .nav-links a:nth-child(2), .nav-links a:nth-child(3) { display: none; }
+  .nav-cta { padding: 10px 13px; }
+  .hero { min-height: auto; padding: 76px 0 66px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 12px; }
+  .hero h1 { font-size: clamp(3.4rem, 15vw, 6rem); }
+  .hero-art { min-height: 330px; margin-top: 10px; }
+  .art-orbit { width: 300px; }
+  .section { padding: 76px 0; }
+  .section-head { display: block; margin-bottom: 28px; }
+  .section-head p { margin-top: 16px; }
+  .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service-card { min-height: 210px; padding: 19px; }
+  .work-grid { grid-template-columns: 1fr; }
+  .work-visual { min-height: 240px; }
+  .contact-grid { align-items: start; flex-direction: column; }
+}
+@media (max-width: 430px) {
+  .nav-links { gap: 10px; font-size: 11px; }
+  .brand { font-size: 12px; }
+  .brand-mark { width: 25px; height: 25px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { min-height: 175px; }
+  .service-card h3 { margin-top: 20px; }
+  .stat-row { gap: 8px; }
+  .stat strong { font-size: 19px; }
+  .float-tag { font-size: 10px; padding: 9px 11px; }
+  .tag-one { right: -2px; }
+  .tag-two { left: -2px; }
+  .work-info { padding: 17px; }
+  .work-type { font-size: 8px; }
+  .footer-inner { align-items: start; flex-direction: column; gap: 8px; }
+}
 </style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Brian Villena home"><span class="brand-mark">B.</span> BRIAN VILLENA</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#services">Expertise</a><a href="#work">Selected work</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+  </div>
+</header>
 
-<div class="medium row">
-  <div class="square"></div>
-</div>
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-content reveal">
+        <div class="eyebrow">Virtual assistant · Digital creative</div>
+        <h1>Good work.<br><span>Better systems.</span></h1>
+        <p class="hero-copy">I help businesses stay organized, show up consistently, and turn ideas into clear, engaging digital experiences—from day-to-day operations to content and creative execution.</p>
+        <div class="hero-actions">
+          <a class="button" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
+          <a class="button secondary" href="https://brian296-web.github.io/Resume/#contact" target="_blank" rel="noopener">View resume <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="availability"><span class="status-dot"></span> Reliable support. Thoughtful execution.</div>
+      </div>
+      <div class="hero-art" aria-label="Animated 3D geometric artwork">
+        <div class="art-orbit" data-3d data-x="18"></div>
+        <div class="art-glow"></div>
+        <div class="hero-hex" data-3d data-x="170">
+          <svg viewBox="0 0 128 128" role="img" aria-label="Geometric hexagon">
+            <defs>
+              <linearGradient id="hexGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#E4FD97"/>
+                <stop offset="100%" stop-color="#8eae67"/>
+              </linearGradient>
+              <filter id="displacementFilter">
+                <feTurbulence type="turbulence" numOctaves="2" baseFrequency="0.035" result="turbulence"/>
+                <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+            </defs>
+            <polygon points="64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96" fill="url(#hexGradient)" stroke="#2D3E2C" stroke-width="1.5"/>
+            <polygon points="64 105 28 84 28 44 64 23 100 44 100 84" fill="none" stroke="#2D3E2C" stroke-opacity=".45" stroke-width="1.2"/>
+            <path d="M64 23 V105 M28 44 L100 84 M100 44 L28 84" stroke="#2D3E2C" stroke-opacity=".25" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="float-tag tag-one" data-3d data-x="80">Creative support<small>Content · Design · Editing</small></div>
+        <div class="float-tag tag-two" data-3d data-x="270">Operations<small>Structure that scales</small></div>
+        <div class="float-tag tag-three" data-3d data-x="40">Detail-driven <span aria-hidden="true">✳</span></div>
+      </div>
+    </div>
+    <div class="scroll-note">Scroll to explore</div>
+  </section>
 
-<div class="medium row">
-  <div id="css-selector-id" class="square"></div>
-</div>
+  <section class="about section" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <div class="eyebrow">A little about me</div>
+        <h2>Part organizer.<br>Part creator.<br>Always a problem-solver.</h2>
+      </div>
+      <div class="about-copy reveal">
+        <p>I’m Brian, a virtual assistant and digital creative with experience supporting business operations, customer service, social media, and content production.</p>
+        <p>I bring a practical mindset to every task: <strong>understand the goal, make the process clearer, and deliver work people can use.</strong> Whether I’m coordinating moving pieces or polishing a piece of content, I value consistency, communication, and getting the details right.</p>
+        <div class="stat-row">
+          <div class="stat"><strong>5+ years</strong><span>Virtual support experience</span></div>
+          <div class="stat"><strong>End-to-end</strong><span>Task ownership</span></div>
+          <div class="stat"><strong>Multi-skilled</strong><span>Ops and creative</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="medium row">
-  <div class="square"></div>
-</div>
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><div class="eyebrow">What I bring</div><h2>Useful skills.<br>Thoughtful execution.</h2></div>
+        <p>Flexible support for the everyday details and the creative work that helps a business move forward.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card reveal" data-3d data-x="8"><span class="card-number">01 / OPERATIONS</span><h3>Virtual Assistance</h3><p>Administrative support, research, customer service, documentation, and keeping workflows organized.</p><div class="service-icon" aria-hidden="true">↗</div></article>
+        <article class="service-card reveal" data-3d data-x="8"><span class="card-number">02 / CONTENT</span><h3>Video Editing</h3><p>Short-form edits, pacing, captions, visual hooks, and platform-ready content built to hold attention.</p><div class="service-icon" aria-hidden="true">▻</div></article>
+        <article class="service-card reveal" data-3d data-x="8"><span class="card-number">03 / DESIGN</span><h3>Graphics & Social</h3><p>Social graphics and visual assets that help brands communicate clearly and consistently.</p><div class="service-icon" aria-hidden="true">✳</div></article>
+        <article class="service-card reveal" data-3d data-x="8"><span class="card-number">04 / DIGITAL</span><h3>Websites & Funnels</h3><p>Support with web pages, landing page layouts, and organizing digital experiences.</p><div class="service-icon" aria-hidden="true">⌘</div></article>
+        <article class="service-card reveal" data-3d data-x="8"><span class="card-number">05 / COORDINATION</span><h3>Project Support</h3><p>Tracking deliverables, clarifying next steps, managing details, and helping work stay on course.</p><div class="service-icon" aria-hidden="true">◫</div></article>
+        <article class="service-card reveal" data-3d data-x="8"><span class="card-number">06 / COMMUNITY</span><h3>Social Media Support</h3><p>Content preparation, publishing support, audience-focused messaging, and consistent brand presence.</p><div class="service-icon" aria-hidden="true">◎</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section work" id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><div class="eyebrow">Selected work</div><h2>A mix of systems<br>and creative work.</h2></div>
+        <p>A quick look at the kinds of projects I support across content, design, and digital experiences.</p>
+      </div>
+      <div class="work-grid">
+        <article class="work-card reveal" data-3d data-x="12">
+          <div class="work-visual graphics">
+            <div class="poster"><span>Social creative / 01</span><strong>MOVE<br>WITH<br>INTENT.</strong><div class="poster-circle"></div></div>
+          </div>
+          <div class="work-info"><div><h3>Social Media Graphics</h3><p>Visual concepts · Brand consistency · Campaign assets</p></div><span class="work-type">Design</span></div>
+        </article>
+        <article class="work-card reveal" data-3d data-x="12">
+          <div class="work-visual video">
+            <div class="video-frame"><div class="play" aria-hidden="true">▶</div></div>
+          </div>
+          <div class="work-info"><div><h3>Short-Form Video Editing</h3><p>Reels · Captions · Pacing · Platform-ready edits</p></div><span class="work-type">Video</span></div>
+        </article>
+        <article class="work-card reveal" data-3d data-x="12">
+          <div class="work-visual websites">
+            <div class="mock-window"><div class="mock-dots"><i></i><i></i><i></i></div><div class="mock-cover">Build a better<br>experience.</div><div class="mock-lines"><i></i><i></i><i></i></div></div>
+          </div>
+          <div class="work-info"><div><h3>Websites & Funnels</h3><p>Landing page layouts · Web visuals · User journeys</p></div><span class="work-type">Web</span></div>
+        </article>
+        <article class="work-card reveal" data-3d data-x="12">
+          <div class="work-visual content">
+            <div class="mock-window"><div class="mock-dots"><i></i><i></i><i></i></div><div class="mock-cover dark">Ideas into<br>action.</div><div class="mock-lines"><i></i><i></i><i></i></div></div>
+          </div>
+          <div class="work-info"><div><h3>Content & Digital Support</h3><p>Content preparation · Research · Workflow support</p></div><span class="work-type">Support</span></div>
+        </article>
+      </div>
+      <p class="work-footnote">Portfolio preview concepts are placeholders. Replace them with your original project images, videos, and live links before publishing.</p>
+    </div>
+  </section>
+
+  <section class="section" id="tools">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><div class="eyebrow">My toolkit</div><h2>The right tools<br>for the job.</h2></div>
+        <p>Comfortable adapting to a team’s existing processes and learning new platforms as needed.</p>
+      </div>
+      <div class="tools-grid reveal">
+        <span class="tool-pill">Canva</span><span class="tool-pill">CapCut</span><span class="tool-pill">Adobe Photoshop</span><span class="tool-pill">AI-assisted tools</span><span class="tool-pill">Social media platforms</span><span class="tool-pill">Website & funnel tools</span><span class="tool-pill">Project coordination</span><span class="tool-pill">Customer support</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact section" id="contact">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <div class="eyebrow">Have a project in mind?</div>
+        <h2>Let’s make work<br>work better.</h2>
+        <p>Need a reliable extra set of hands for operations, content, or creative projects? Let’s talk about what you’re building.</p>
+      </div>
+      <a class="button reveal" href="https://brian296-web.github.io/Resume/#contact" target="_blank" rel="noopener">Get in touch <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner"><span>© <span id="year"></span> Brian Villena. Built with intention.</span><span>Virtual Assistant · Digital Creative · <a href="#top">Back to top ↑</a></span></div>
+</footer>
 
 <script>
-  const rows = document.querySelectorAll(".medium.row");
-  const squares = document.querySelectorAll(".square");
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = [...document.querySelectorAll('[data-3d]')];
+  const reveals = document.querySelectorAll('.reveal');
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  function updateAnimation() {
-    const viewportHeight = window.innerHeight;
-
-    squares.forEach((square, index) => {
-      const rect = rows[index].getBoundingClientRect();
-
-      // Progress changes as the section crosses the viewport
-      const progress =
-        (viewportHeight - rect.top) /
-        (viewportHeight + rect.height);
-
-      const p = Math.max(0, Math.min(1, progress));
-      const angle = (p - 0.5) * 2;
-
-      // Large, visible 3D movement
-      const rotateX = angle * 55;
-      const rotateY = Math.sin(p * Math.PI * 2) * 55;
-      const rotateZ = angle * 25;
-      const moveZ = Math.sin(p * Math.PI) * 180;
-      const moveY = angle * -100;
-      const scale = 0.65 + Math.sin(p * Math.PI) * 0.5;
-
-      square.style.transform = `
-        translate3d(0, ${moveY}px, ${moveZ}px)
-        rotateX(${rotateX}deg)
-        rotateY(${rotateY}deg)
-        rotateZ(${rotateZ}deg)
-        scale(${scale})
-      `;
-    });
+  // Reveal content as it enters the viewport.
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach((el) => observer.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add('is-visible'));
   }
 
-  let framePending = false;
+  if (reduceMotion) {
+    items.forEach(el => el.style.transform = 'none');
+    return;
+  }
 
-  function onScroll() {
-    if (!framePending) {
-      framePending = true;
-
-      requestAnimationFrame(() => {
-        updateAnimation();
-        framePending = false;
-      });
+  let raf = false;
+  function update3D() {
+    const vh = window.innerHeight || 1;
+    items.forEach((el, index) => {
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const progress = (center - vh / 2) / (vh * 0.72);
+      const p = Math.max(-1, Math.min(1, progress));
+      const intensity = Number(el.dataset.x || 12);
+      const rotateY = -p * intensity * 0.28;
+      const rotateX = p * intensity * 0.14;
+      const translateY = -p * Math.min(28, intensity * 0.12);
+      const depth = (1 - Math.abs(p)) * Math.min(36, intensity * 0.16);
+      el.style.transform = `perspective(1000px) translate3d(0, ${translateY}px, ${depth}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    raf = false;
+  }
+  function requestUpdate() {
+    if (!raf) {
+      raf = true;
+      requestAnimationFrame(update3D);
     }
   }
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  update3D();
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
-
-  updateAnimation();
+  // Subtle pointer tilt for cards on devices that support hover.
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.service-card, .work-card').forEach(card => {
+      card.addEventListener('pointermove', (event) => {
+        const r = card.getBoundingClientRect();
+        const x = (event.clientX - r.left) / r.width - 0.5;
+        const y = (event.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 4}deg) translateY(-3px)`;
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+})();
 </script>
+</body>
+</html>
